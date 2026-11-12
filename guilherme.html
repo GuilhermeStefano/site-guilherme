@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guilherme Stefano | Sites, Automações e Agentes de IA para o seu comércio</title>
+<meta name="description" content="Sites de alta conversão, automações inteligentes e agentes de IA para comércios de médio porte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{
+  --navy:#050d1f; --navy2:#0a1a3a; --navy3:#102450;
+  --gold:#D4AF37; --gold2:#f1d77a; --gold3:#a9871f;
+  --text:#e8ecf5; --muted:#93a0bd;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--navy);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.display{font-family:'Bricolage Grotesque','DM Sans',sans-serif;letter-spacing:-.02em;line-height:1.08}
+.gold-text{background:linear-gradient(120deg,var(--gold3),var(--gold2) 45%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+section{padding:96px 0;position:relative}
+.bg-glow::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 85% 10%,rgba(212,175,55,.12),transparent 70%),radial-gradient(700px 500px at 5% 60%,rgba(30,70,160,.25),transparent 70%);pointer-events:none}
+.card{background:linear-gradient(160deg,rgba(16,36,80,.7),rgba(8,20,45,.7));border:1px solid rgba(212,175,55,.22);border-radius:18px;backdrop-filter:blur(6px)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:700;cursor:pointer;border:1px solid transparent;transition:transform .25s,box-shadow .25s,background .25s;text-decoration:none;position:relative;overflow:hidden}
+.btn-gold{background:linear-gradient(120deg,var(--gold3),var(--gold) 50%,var(--gold2));color:#1a1400;box-shadow:0 0 0 rgba(212,175,55,0)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 10px 34px rgba(212,175,55,.4)}
+.btn-gold::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn-gold:hover::after{left:130%}
+.btn-ghost{border-color:rgba(212,175,55,.5);color:var(--gold2);background:rgba(212,175,55,.05)}
+.btn-ghost:hover{background:rgba(212,175,55,.14);transform:translateY(-3px)}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(5,13,31,.88);backdrop-filter:blur(12px);border-color:rgba(212,175,55,.2)}
+nav a.l{color:var(--muted);text-decoration:none;font-size:.95rem;transition:color .2s}
+nav a.l:hover{color:var(--gold2)}
+/* hero */
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:float 9s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-28px) translateX(14px)}}
+.floaty{animation:float 6s ease-in-out infinite}
+#particles{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
+/* chat */
+.phone{background:#07122b;border:1px solid rgba(212,175,55,.35);border-radius:26px;box-shadow:0 0 60px rgba(212,175,55,.15),0 30px 60px rgba(0,0,0,.5);overflow:hidden}
+.phone-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#0d2250,#0a1a3a);border-bottom:1px solid rgba(212,175,55,.2)}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold3),var(--gold2));display:grid;place-items:center;color:#1a1400;font-weight:800}
+.chat{height:340px;padding:16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;justify-content:flex-end}
+.msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:.92rem;animation:pop .35s ease}
+.msg.in{background:#13306b;border-bottom-left-radius:4px;align-self:flex-start}
+.msg.out{background:linear-gradient(120deg,#b8952a,#d9b84a);color:#1a1400;border-bottom-right-radius:4px;align-self:flex-end;font-weight:500}
+.msg small{display:block;opacity:.6;font-size:.7rem;margin-top:3px}
+.typing{display:flex;gap:4px;padding:12px 14px;background:#13306b;border-radius:16px;border-bottom-left-radius:4px;align-self:flex-start}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--gold2);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}}
+/* tabs */
+.tab{padding:11px 20px;border-radius:999px;border:1px solid rgba(212,175,55,.3);background:transparent;color:var(--muted);cursor:pointer;font:inherit;font-weight:500;transition:all .25s}
+.tab:hover{color:var(--gold2);border-color:var(--gold)}
+.tab[aria-selected="true"]{background:linear-gradient(120deg,var(--gold3),var(--gold));color:#1a1400;border-color:transparent;font-weight:700}
+.panel{display:none}.panel.active{display:grid;animation:pop .45s ease}
+.check{list-style:none;padding:0;margin:0}
+.check li{padding-left:30px;position:relative;margin:10px 0;color:#cfd7ea}
+.check li::before{content:"";position:absolute;left:0;top:.45em;width:16px;height:16px;border-radius:50%;border:1px solid var(--gold);background:radial-gradient(circle,var(--gold) 35%,transparent 40%)}
+/* mockups */
+.browser{background:#0a1a3a;border:1px solid rgba(212,175,55,.3);border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.browser .bar{display:flex;gap:6px;padding:10px 12px;background:#0d2250}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:rgba(212,175,55,.5)}
+.sk{border-radius:8px;background:linear-gradient(90deg,rgba(212,175,55,.12),rgba(212,175,55,.3),rgba(212,175,55,.12));background-size:200% 100%;animation:shimmer 2.4s linear infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+/* demos */
+.stat-num{font-family:'Bricolage Grotesque';font-weight:800;font-size:2.4rem}
+.log{font-size:.85rem;display:flex;flex-direction:column;gap:8px;min-height:250px}
+.log div{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(16,36,80,.7);border:1px solid rgba(212,175,55,.15);animation:pop .35s ease}
+.dot{width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px #4ade80;flex:none}
+.bar-track{height:10px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold3),var(--gold2));transition:width 1s cubic-bezier(.2,.8,.2,1)}
+/* sliders */
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--gold) var(--p,50%),rgba(255,255,255,.12) var(--p,50%));outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold2);border:3px solid var(--navy);box-shadow:0 0 0 2px var(--gold),0 0 18px rgba(212,175,55,.6)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--gold2);border:3px solid var(--navy);box-shadow:0 0 0 2px var(--gold)}
+/* whatsapp float */
+.wa{position:fixed;right:18px;bottom:18px;z-index:60;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--gold3),var(--gold2));display:grid;place-items:center;color:#1a1400;box-shadow:0 8px 30px rgba(212,175,55,.5);transition:transform .25s}
+.wa:hover{transform:scale(1.1)}
+.wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold2);animation:ring 2.2s infinite}
+@keyframes ring{to{transform:scale(1.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media (max-width:768px){section{padding:68px 0}.chat{height:300px}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap flex items-center justify-between h-16">
+    <a href="#topo" class="display text-xl font-extrabold gold-text" style="text-decoration:none">Guilherme Stefano</a>
+    <div class="hidden md:flex gap-7">
+      <a class="l" href="#sites">Sites</a>
+      <a class="l" href="#automacao">Automação e IA</a>
+      <a class="l" href="#roi">Calculadora</a>
+      <a class="l" href="#contato">Contato</a>
+    </div>
+    <a href="#contato" class="btn btn-ghost !py-2 !px-5 text-sm">Falar comigo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="topo" class="relative overflow-hidden bg-glow" style="padding:140px 0 90px">
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="orb" style="width:280px;height:280px;background:#1b4fd1;top:10%;left:-80px"></div>
+  <div class="orb" style="width:220px;height:220px;background:var(--gold);bottom:5%;right:5%;opacity:.25;animation-delay:-3s"></div>
+  <div class="wrap relative grid lg:grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="mb-5 text-sm" style="color:var(--gold2)">Para lojas, redes regionais e prestadores de serviços</p>
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold">
+        Revolucione seu comércio com <span class="gold-text">Sites de Alta Conversão</span>, Automações Inteligentes e Agentes de IA.
+      </h1>
+      <p class="mt-6 text-lg max-w-xl" style="color:var(--muted)">Seu negócio vendendo e atendendo enquanto você descansa. Eu construo a presença digital e os robôs que respondem, cobram e fecham pedidos por você.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a class="btn btn-gold" href="https://wa.me/5511951925948?text=Ol%C3%A1%20Guilherme%2C%20quero%20automatizar%20meu%20com%C3%A9rcio!" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.2 1.6 6L0 24l6.3-1.7a12 12 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.200-1.200-6.200-3.400-8.400zM12 21.800a9.900 9.900 0 0 1-5-1.400l-.4-.2-3.700 1 1-3.600-.2-.4A9.800 9.800 0 0 1 2.100 12C2.100 6.500 6.500 2.100 12 2.100s9.900 4.400 9.900 9.900-4.400 9.800-9.900 9.800zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.100l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2 0-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.300 5.200 4.600 1.900.8 2.700.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.3-1.300.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#roi">Simular meu ganho</a>
+      </div>
+      <div class="mt-12 grid grid-cols-3 gap-4 max-w-md">
+        <div><div class="stat-num gold-text" data-count="24" data-suffix="h">0</div><div class="text-sm" style="color:var(--muted)">atendimento no ar</div></div>
+        <div><div class="stat-num gold-text" data-count="70" data-suffix="%">0</div><div class="text-sm" style="color:var(--muted)">das dúvidas respondidas sozinhas</div></div>
+        <div><div class="stat-num gold-text" data-count="3" data-suffix="s">0</div><div class="text-sm" style="color:var(--muted)">para responder um cliente</div></div>
+      </div>
+    </div>
+    <div class="floaty">
+      <div class="phone max-w-sm mx-auto">
+        <div class="phone-head">
+          <div class="avatar">IA</div>
+          <div><div class="font-bold">Assistente da Loja Modelo</div><div class="text-xs flex items-center gap-2" style="color:#4ade80"><span class="dot" style="width:7px;height:7px"></span>online agora · 03:12 da manhã</div></div>
+        </div>
+        <div class="chat" id="heroChat" aria-live="polite" aria-label="Simulação de atendimento automático"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SITES -->
+<section id="sites" class="bg-glow">
+  <div class="wrap relative">
+    <div class="max-w-2xl reveal">
+      <h2 class="display text-3xl sm:text-5xl font-extrabold">Um site feito para o seu tipo de negócio</h2>
+      <p class="mt-4 text-lg" style="color:var(--muted)">Escolha o formato e veja o que ele resolve. Todos são rápidos, bonitos no celular e pensados para transformar visita em venda.</p>
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3 reveal" role="tablist" id="siteTabs" aria-label="Tipos de site">
+      <button class="tab" role="tab" aria-selected="true" data-t="lp">Landing Pages</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="ec">E-commerces</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="inst">Sites Institucionais</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="sys">Sistemas Web</button>
+    </div>
+
+    <div class="mt-8 card p-6 sm:p-10 reveal">
+      <div class="panel active grid md:grid-cols-2 gap-10 items-center" data-p="lp">
+        <div><h3 class="display text-2xl sm:text-3xl font-bold gold-text">Uma página, um objetivo: gerar contatos</h3>
+          <p class="mt-3" style="color:var(--muted)">Ideal para campanhas, promoções e lançamentos. Tudo na página leva o visitante a uma ação só.</p>
+          <ul class="check mt-5"><li>Botão de WhatsApp com mensagem pronta</li><li>Carrega em menos de 2 segundos no 4G</li><li>Formulário que cai direto no seu celular</li><li>Pronta para anúncios no Google e Instagram</li></ul></div>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="p-5 space-y-3">
+          <div class="sk" style="height:22px;width:70%"></div><div class="sk" style="height:12px;width:90%"></div><div class="sk" style="height:12px;width:60%"></div>
+          <div class="btn btn-gold !py-2 !px-5 text-sm mt-2" style="pointer-events:none">Quero meu orçamento</div>
+          <div class="grid grid-cols-3 gap-3 pt-3"><div class="sk" style="height:60px"></div><div class="sk" style="height:60px"></div><div class="sk" style="height:60px"></div></div></div></div>
+      </div>
+      <div class="panel grid md:grid-cols-2 gap-10 items-center" data-p="ec">
+        <div><h3 class="display text-2xl sm:text-3xl font-bold gold-text">Sua loja aberta 24h, do celular ao caixa</h3>
+          <p class="mt-3" style="color:var(--muted)">Catálogo, carrinho e pagamento em um só lugar, com estoque e entrega organizados.</p>
+          <ul class="check mt-5"><li>Pix, cartão e boleto integrados</li><li>Cálculo de frete automático</li><li>Aviso de pedido no WhatsApp</li><li>Carrinho abandonado recuperado por mensagem</li></ul></div>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="p-5 grid grid-cols-3 gap-3">
+          <div><div class="sk" style="height:80px"></div><div class="sk mt-2" style="height:10px"></div></div><div><div class="sk" style="height:80px"></div><div class="sk mt-2" style="height:10px"></div></div><div><div class="sk" style="height:80px"></div><div class="sk mt-2" style="height:10px"></div></div>
+          <div><div class="sk" style="height:80px"></div><div class="sk mt-2" style="height:10px"></div></div><div><div class="sk" style="height:80px"></div><div class="sk mt-2" style="height:10px"></div></div><div class="flex items-center justify-center rounded-lg" style="height:80px;border:1px dashed var(--gold);color:var(--gold2);font-weight:700">Carrinho (3)</div></div></div>
+      </div>
+      <div class="panel grid md:grid-cols-2 gap-10 items-center" data-p="inst">
+        <div><h3 class="display text-2xl sm:text-3xl font-bold gold-text">A vitrine que passa confiança antes da primeira conversa</h3>
+          <p class="mt-3" style="color:var(--muted)">Mostre quem você é, o que faz e onde está. Aparece no Google e dá segurança para quem ainda não conhece o negócio.</p>
+          <ul class="check mt-5"><li>Páginas de serviços, equipe e depoimentos</li><li>Mapa, horários e botões de contato</li><li>Configurado para aparecer em buscas locais</li><li>Você edita textos e fotos sozinho, se quiser</li></ul></div>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="p-5 space-y-3">
+          <div class="flex gap-2"><div class="sk" style="height:10px;width:50px"></div><div class="sk" style="height:10px;width:50px"></div><div class="sk" style="height:10px;width:50px"></div></div>
+          <div class="sk" style="height:90px"></div><div class="grid grid-cols-2 gap-3"><div class="sk" style="height:50px"></div><div class="sk" style="height:50px"></div></div></div></div>
+      </div>
+      <div class="panel grid md:grid-cols-2 gap-10 items-center" data-p="sys">
+        <div><h3 class="display text-2xl sm:text-3xl font-bold gold-text">Seu processo interno saindo da planilha</h3>
+          <p class="mt-3" style="color:var(--muted)">Agendamentos, pedidos, clientes, comissões e relatórios em um painel feito sob medida para como você trabalha.</p>
+          <ul class="check mt-5"><li>Painel com vendas e metas em tempo real</li><li>Agenda online com lembrete automático</li><li>Acesso por login para sua equipe</li><li>Integra com seu site, WhatsApp e pagamentos</li></ul></div>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="p-5">
+          <div class="flex items-end gap-2" style="height:120px"><div class="bar-fill" style="width:14%;height:40%"></div><div class="bar-fill" style="width:14%;height:62%"></div><div class="bar-fill" style="width:14%;height:48%"></div><div class="bar-fill" style="width:14%;height:80%"></div><div class="bar-fill" style="width:14%;height:70%"></div><div class="bar-fill" style="width:14%;height:100%"></div></div>
+          <div class="grid grid-cols-3 gap-3 mt-4"><div class="sk" style="height:34px"></div><div class="sk" style="height:34px"></div><div class="sk" style="height:34px"></div></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMAÇÃO -->
+<section id="automacao" style="background:linear-gradient(180deg,var(--navy),var(--navy2) 50%,var(--navy))">
+  <div class="wrap">
+    <div class="max-w-2xl reveal">
+      <h2 class="display text-3xl sm:text-5xl font-extrabold">Veja a automação funcionando, na prática</h2>
+      <p class="mt-4 text-lg" style="color:var(--muted)">Ainda sem vitrine de clientes? Aqui estão simulações de como cada processo roda no dia a dia de um comércio. Aperte para repetir.</p>
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3 reveal" role="tablist" id="demoTabs" aria-label="Demonstrações">
+      <button class="tab" role="tab" aria-selected="true" data-d="wa">Atendimento 24h</button>
+      <button class="tab" role="tab" aria-selected="false" data-d="camp">Campanhas automáticas</button>
+      <button class="tab" role="tab" aria-selected="false" data-d="ia">Agente de IA</button>
+    </div>
+
+    <div class="mt-8 grid lg:grid-cols-5 gap-6 reveal">
+      <div class="card p-6 lg:col-span-3 min-h-[380px]">
+        <div id="demoView"></div>
+        <button class="btn btn-ghost !py-2 !px-5 text-sm mt-4" id="replay">Repetir demonstração</button>
+      </div>
+      <div class="card p-6 lg:col-span-2">
+        <h3 class="display text-xl font-bold" id="demoTitle"></h3>
+        <p class="mt-2 text-sm" style="color:var(--muted)" id="demoDesc"></p>
+        <div class="mt-6 space-y-5" id="demoMetrics"></div>
+      </div>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-3 gap-5">
+      <div class="card p-6 reveal"><h3 class="display text-xl font-bold gold-text">1. Conversamos</h3><p class="mt-2 text-sm" style="color:var(--muted)">Você me conta como atende e vende hoje. Eu aponto onde está perdendo tempo e dinheiro.</p></div>
+      <div class="card p-6 reveal"><h3 class="display text-xl font-bold gold-text">2. Eu construo</h3><p class="mt-2 text-sm" style="color:var(--muted)">Site, fluxos de WhatsApp e agente de IA treinado com os dados do seu negócio.</p></div>
+      <div class="card p-6 reveal"><h3 class="display text-xl font-bold gold-text">3. Você acompanha</h3><p class="mt-2 text-sm" style="color:var(--muted)">Entrega com treinamento, ajustes e suporte para tudo continuar funcionando.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="roi" class="bg-glow">
+  <div class="wrap relative">
+    <div class="max-w-2xl reveal">
+      <h2 class="display text-3xl sm:text-5xl font-extrabold">Quanto sua empresa ganha automatizando?</h2>
+      <p class="mt-4 text-lg" style="color:var(--muted)">Arraste os controles com os números do seu comércio e veja uma estimativa mensal.</p>
+    </div>
+    <div class="mt-10 grid lg:grid-cols-2 gap-6 reveal">
+      <div class="card p-6 sm:p-8 space-y-7">
+        <div><div class="flex justify-between mb-2"><label for="r1">Atendimentos por dia</label><b id="o1" class="gold-text"></b></div><input id="r1" type="range" min="5" max="300" value="60"></div>
+        <div><div class="flex justify-between mb-2"><label for="r2">Minutos por atendimento</label><b id="o2" class="gold-text"></b></div><input id="r2" type="range" min="1" max="20" value="6"></div>
+        <div><div class="flex justify-between mb-2"><label for="r3">Custo da hora de quem atende (R$)</label><b id="o3" class="gold-text"></b></div><input id="r3" type="range" min="10" max="80" value="20"></div>
+        <div><div class="flex justify-between mb-2"><label for="r4">Ticket médio de venda (R$)</label><b id="o4" class="gold-text"></b></div><input id="r4" type="range" min="30" max="1500" step="10" value="150"></div>
+        <div><div class="flex justify-between mb-2"><label for="r5">Clientes perdidos por demora (%)</label><b id="o5" class="gold-text"></b></div><input id="r5" type="range" min="2" max="40" value="15"></div>
+        <p class="text-xs" style="color:var(--muted)">Estimativa baseada em 26 dias de trabalho, automação resolvendo 70% dos atendimentos, recuperação de metade dos clientes perdidos e 30% de conversão deles. Os resultados reais variam por negócio.</p>
+      </div>
+      <div class="card p-6 sm:p-8 flex flex-col justify-between" style="box-shadow:0 0 70px rgba(212,175,55,.12)">
+        <div>
+          <div style="color:var(--muted)">Ganho estimado por mês</div>
+          <div class="display gold-text font-extrabold" style="font-size:clamp(2.6rem,7vw,4.2rem)" id="total">R$ 0</div>
+          <div class="mt-6 space-y-5">
+            <div><div class="flex justify-between text-sm mb-1"><span>Economia de tempo da equipe</span><b id="sv1"></b></div><div class="bar-track"><div class="bar-fill" id="b1" style="width:0"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span>Vendas recuperadas</span><b id="sv2"></b></div><div class="bar-track"><div class="bar-fill" id="b2" style="width:0"></div></div></div>
+          </div>
+          <div class="mt-6 grid grid-cols-2 gap-4">
+            <div class="rounded-xl p-4" style="background:rgba(212,175,55,.08)"><div class="stat-num gold-text" style="font-size:1.9rem" id="hrs">0h</div><div class="text-sm" style="color:var(--muted)">horas livres por mês</div></div>
+            <div class="rounded-xl p-4" style="background:rgba(212,175,55,.08)"><div class="stat-num gold-text" style="font-size:1.9rem" id="yr">R$ 0</div><div class="text-sm" style="color:var(--muted)">em 12 meses</div></div>
+          </div>
+        </div>
+        <a id="roiCta" class="btn btn-gold mt-8 justify-center" href="#" target="_blank" rel="noopener">Quero esse resultado, vamos conversar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" style="background:linear-gradient(180deg,var(--navy),var(--navy2))">
+  <div class="wrap">
+    <div class="card p-8 sm:p-14 text-center reveal" style="box-shadow:0 0 90px rgba(212,175,55,.14)">
+      <h2 class="display text-3xl sm:text-5xl font-extrabold">Vamos colocar o seu comércio <span class="gold-text">para vender no automático?</span></h2>
+      <p class="mt-4 text-lg max-w-xl mx-auto" style="color:var(--muted)">Me chame e conte sobre o seu negócio. Eu respondo com um diagnóstico gratuito do que dá para automatizar.</p>
+      <div class="mt-9 flex flex-wrap gap-4 justify-center">
+        <a class="btn btn-gold" href="https://wa.me/5511951925948?text=Ol%C3%A1%20Guilherme%2C%20vi%20seu%20site%20e%20quero%20um%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener">WhatsApp (11) 95192-5948</a>
+        <a class="btn btn-ghost" href="mailto:guistefano28@gmail.com?subject=Quero%20automatizar%20meu%20com%C3%A9rcio">guistefano28@gmail.com</a>
+      </div>
+    </div>
+    <footer class="mt-12 text-center text-sm" style="color:var(--muted)">© <span id="y"></span> Guilherme Stefano. Sites, automações e agentes de IA.</footer>
+  </div>
+</section>
+
+<a class="wa" href="https://wa.me/5511951925948?text=Ol%C3%A1%20Guilherme!" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.2 1.6 6L0 24l6.3-1.7a12 12 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.200-1.200-6.200-3.400-8.400zm-8.500 18.300a9.900 9.900 0 0 1-5-1.400l-.4-.2-3.700 1 1-3.600-.2-.4A9.800 9.800 0 0 1 2.100 12C2.100 6.500 6.500 2.100 12 2.100s9.900 4.400 9.900 9.900-4.400 9.800-9.900 9.800z"/></svg>
+</a>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+$('#y').textContent=new Date().getFullYear();
+
+/* nav */
+addEventListener('scroll',()=>$('#nav').classList.toggle('scrolled',scrollY>30),{passive:true});
+
+/* reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(el=>io.observe(el));
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,end=+el.dataset.count,suf=el.dataset.suffix||'';let t0;
+  const step=t=>{t0??=t;const p=Math.min((t-t0)/1400,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step)}),{threshold:.5});
+$$('[data-count]').forEach(el=>cio.observe(el));
+
+/* particles */
+(()=>{const c=$('#particles'),x=c.getContext('2d');let w,h,ps;
+  const init=()=>{w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;ps=Array.from({length:Math.min(60,w/18)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+.4,vx:(Math.random()-.5)*.25,vy:-Math.random()*.35-.05}))};
+  const draw=()=>{x.clearRect(0,0,w,h);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.y<-5){p.y=h+5;p.x=Math.random()*w}
+    x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fillStyle='rgba(212,175,55,.55)';x.fill()});requestAnimationFrame(draw)};
+  init();addEventListener('resize',init);
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches)draw();})();
+
+/* chat engine */
+let runId=0;
+const clock=()=>new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+async function play(box,script,id,loop){
+  box.innerHTML='';
+  for(const [who,text] of script){
+    if(id!==runId)return;
+    if(who==='in'){const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';box.appendChild(t);await sleep(900);t.remove()}
+    else await sleep(700);
+    if(id!==runId)return;
+    const m=document.createElement('div');m.className='msg '+who;m.innerHTML=text+'<small>'+clock()+'</small>';box.appendChild(m);
+    while(box.children.length>6)box.firstChild.remove();
+    await sleep(1100);
+  }
+  if(loop&&id===runId){await sleep(3000);play(box,script,id,loop)}
+}
+const heroScript=[
+ ['out','Oi! Vocês ainda têm o tênis preto tamanho 41?'],
+ ['in','Olá! Temos sim, 3 unidades em estoque. Quer ver as fotos e o preço?'],
+ ['out','Quero! Dá pra pagar no Pix?'],
+ ['in','Dá sim, com 5% de desconto: R$ 284,05. Posso gerar o QR Code agora?'],
+ ['out','Pode!'],
+ ['in','Pronto! Pagamento confirmado e pedido separado para entrega amanhã. Obrigado pela compra!']
+];
+const heroId=++runId;
+const hio=new IntersectionObserver(es=>{if(es[0].isIntersecting){hio.disconnect();play($('#heroChat'),heroScript,heroId,true)}});
+hio.observe($('#heroChat'));
+
+/* tabs sites */
+$$('#siteTabs .tab').forEach(b=>b.addEventListener('click',()=>{
+  $$('#siteTabs .tab').forEach(t=>t.setAttribute('aria-selected',t===b));
+  $$('.panel').forEach(p=>p.classList.toggle('active',p.dataset.p===b.dataset.t));
+}));
+
+/* demos */
+const demos={
+ wa:{title:'Atendimento 24h pelo WhatsApp',desc:'O cliente chama de madrugada ou no feriado e recebe resposta na hora, com horários, preços e agendamento.',
+  metrics:[['Tempo de resposta',95,'3 segundos'],['Dúvidas resolvidas sem você',70,'70%'],['Clientes atendidos fora do horário',88,'+88%']],
+  run:async(v,id)=>{v.innerHTML='<div class="chat" style="height:300px" id="dchat"></div>';
+   await play($('#dchat'),[
+    ['out','Boa noite, vocês abrem domingo?'],
+    ['in','Boa noite! Abrimos domingo das 9h às 14h. Quer agendar um horário?'],
+    ['out','Quero às 10h'],
+    ['in','Agendado para domingo às 10h. Vou te lembrar no sábado à noite. Até lá!']],id,false)}},
+ camp:{title:'Disparo automático de campanhas',desc:'Promoção, aniversário, lembrete de retorno ou carrinho abandonado: a mensagem certa sai sozinha, para quem tem mais chance de comprar.',
+  metrics:[['Clientes alcançados',100,'1.200 contatos'],['Taxa de abertura',90,'até 90%'],['Horas de trabalho manual evitadas',80,'~15h por campanha']],
+  run:async(v,id)=>{v.innerHTML='<div class="log" id="dlog"></div>';const l=$('#dlog');
+   const rows=['Cliente em aniversário: cupom de 10% enviado','Cliente sumido há 60 dias: oferta de retorno enviada','Carrinho abandonado: lembrete com link de pagamento','Compra entregue: pedido de avaliação enviado','Promoção de sexta enviada para a lista de clientes ativos'];
+   for(const r of rows){if(id!==runId)return;await sleep(900);const d=document.createElement('div');d.innerHTML='<span class="dot"></span><span>'+r+'</span>';l.appendChild(d)}}},
+ ia:{title:'Agente de IA treinado no seu negócio',desc:'Responde com o catálogo, as regras e o jeito de falar da sua empresa. Quando o assunto for delicado, chama você.',
+  metrics:[['Conhece seu catálogo e preços',100,'100%'],['Qualifica o cliente antes de passar a você',85,'+85%'],['Entrega o contato pronto para fechar',75,'lead quente']],
+  run:async(v,id)=>{v.innerHTML='<div class="chat" style="height:300px" id="dchat"></div>';
+   await play($('#dchat'),[
+    ['out','Preciso de um orçamento para trocar o piso da loja, 80 m².'],
+    ['in','Posso ajudar! É piso cerâmico ou porcelanato? E a obra pode ser aos fins de semana?'],
+    ['out','Porcelanato, pode ser sábado.'],
+    ['in','Perfeito. Pela faixa de preço, fica entre R$ 9.800 e R$ 12.400. Vou passar seus dados ao consultor para confirmar a visita. Qual o melhor horário?']],id,false)}}
+};
+let cur='wa';
+function loadDemo(k){cur=k;const d=demos[k],id=++runId;
+  $('#demoTitle').textContent=d.title;$('#demoDesc').textContent=d.desc;
+  $('#demoMetrics').innerHTML=d.metrics.map(m=>`<div><div class="flex justify-between text-sm mb-1"><span>${m[0]}</span><b class="gold-text">${m[2]}</b></div><div class="bar-track"><div class="bar-fill" style="width:0" data-w="${m[1]}"></div></div></div>`).join('');
+  requestAnimationFrame(()=>setTimeout(()=>$$('#demoMetrics .bar-fill').forEach(b=>b.style.width=b.dataset.w+'%'),60));
+  d.run($('#demoView'),id);}
+$$('#demoTabs .tab').forEach(b=>b.addEventListener('click',()=>{$$('#demoTabs .tab').forEach(t=>t.setAttribute('aria-selected',t===b));loadDemo(b.dataset.d)}));
+$('#replay').addEventListener('click',()=>loadDemo(cur));
+const dio=new IntersectionObserver(es=>{if(es[0].isIntersecting){dio.disconnect();loadDemo('wa')}},{threshold:.3});
+dio.observe($('#demoView'));
+
+/* ROI */
+const brl=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
+const ids=['r1','r2','r3','r4','r5'];
+function calc(){
+  const [a,m,c,t,p]=ids.map(i=>+$('#'+i).value);
+  ids.forEach(i=>{const e=$('#'+i);e.style.setProperty('--p',((e.value-e.min)/(e.max-e.min)*100)+'%')});
+  $('#o1').textContent=a;$('#o2').textContent=m+' min';$('#o3').textContent=brl(c);$('#o4').textContent=brl(t);$('#o5').textContent=p+'%';
+  const hrs=a*26*m/60*.7, save=hrs*c, rec=a*26*(p/100)*.5*t*.3, tot=save+rec;
+  $('#total').textContent=brl(tot);$('#sv1').textContent=brl(save);$('#sv2').textContent=brl(rec);
+  $('#b1').style.width=(tot?save/tot*100:0)+'%';$('#b2').style.width=(tot?rec/tot*100:0)+'%';
+  $('#hrs').textContent=Math.round(hrs)+'h';$('#yr').textContent=brl(tot*12);
+  const msg=`Olá Guilherme! Usei a calculadora do seu site: com ${a} atendimentos/dia, estimei um ganho de ${brl(tot)} por mês. Quero conversar sobre automatizar meu comércio.`;
+  $('#roiCta').href='https://wa.me/5511951925948?text='+encodeURIComponent(msg);
+}
+ids.forEach(i=>$('#'+i).addEventListener('input',calc));calc();
+</script>
+</body>
+</html>
