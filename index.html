@@ -381,7 +381,9 @@ dio.observe($('#demoView'));
 const brl=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
 const ids=['r1','r2','r3','r4','r5'];
 function calc(){
-  const [a,m,c,t,p]=ids.map(i=>+$('#'+i).value);
+  const [a,m,c,t,p]=ids.map(i=>+$('#'+i).value);9
+
+  
   ids.forEach(i=>{const e=$('#'+i);e.style.setProperty('--p',((e.value-e.min)/(e.max-e.min)*100)+'%')});
   $('#o1').textContent=a;$('#o2').textContent=m+' min';$('#o3').textContent=brl(c);$('#o4').textContent=brl(t);$('#o5').textContent=p+'%';
   const hrs=a*26*m/60*.7, save=hrs*c, rec=a*26*(p/100)*.5*t*.3, tot=save+rec;
